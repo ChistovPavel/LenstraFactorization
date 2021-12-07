@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'ktso.course.work'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+apply from: "${projectDir}/repositories.gradle"
+apply from: "${projectDir}/versions.gradle"
+
+dependencies {
+    implementation "org.apache.commons:commons-lang3:${libs.commonsLang}"
+
+    testImplementation "junit:junit:${libs.junit}"
+}
