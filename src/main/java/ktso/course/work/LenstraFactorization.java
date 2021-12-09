@@ -3,46 +3,60 @@ package ktso.course.work;
 import ktso.course.work.exception.FactorizationException;
 import ktso.course.work.exception.InverseException;
 import ktso.course.work.intf.Factorization;
-import ktso.course.work.utils.PrimeUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.List;
 import java.util.Objects;
 
+/**
+ * Класс, реализующий механизм факторизации чисел
+ */
 public class LenstraFactorization implements Factorization {
 
   private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
-  private static final int DEFAULT_ITERATION_COUNT = 100_000;
+  private static final int DEFAULT_ITERATION_COUNT = 100;
 
   public LenstraFactorization() {
   }
 
+  /**
+   * @param targetNumber
+   * @param factorialBase
+   * @return
+   */
   @Override
-  public Pair<BigInteger, BigInteger> process(BigInteger targetNumber, int base) {
-    return process(targetNumber, base, DEFAULT_ITERATION_COUNT);
+  public Pair<BigInteger, BigInteger> process(BigInteger targetNumber, int factorialBase) {
+    return process(targetNumber, factorialBase, DEFAULT_ITERATION_COUNT);
   }
 
+  /**
+   * @param targetNumber
+   * @param factorialBase
+   * @param iterationCount
+   * @return
+   */
   @Override
-  public Pair<BigInteger, BigInteger> process(BigInteger targetNumber, int base, int iterationCount) {
+  public Pair<BigInteger, BigInteger> process(BigInteger targetNumber, int factorialBase, int iterationCount) {
     Pair<BigInteger, BigInteger> result;
-    List<Integer> primeNumberList = PrimeUtils.getPrimeNumberList(base);
+
+    if (BigInteger.ONE.equals(targetNumber)) {
+      return Pair.of(targetNumber, BigInteger.ONE);
+    }
 
     for (int i = 0; i < iterationCount; i++) {
-      result = startFactorization(targetNumber, base, primeNumberList);
+      result = startFactorization(targetNumber, factorialBase);
       if (!(Objects.equals(result.getKey(), targetNumber) ||
             Objects.equals(result.getKey(), BigInteger.ONE))) {
         return result;
       }
     }
-    throw new FactorizationException();
+    return Pair.of(targetNumber, BigInteger.ONE);
   }
 
   private Pair<BigInteger, BigInteger> startFactorization(BigInteger targetNumber,
-                                                          int base,
-                                                          List<Integer> primeNumberList) {
+                                                          int factorialBase) {
     BigInteger a, b, x, y, discriminant, g;
     do {
       a = getRandomNumberWithMod(targetNumber.bitLength(), targetNumber);
@@ -68,10 +82,9 @@ public class LenstraFactorization implements Factorization {
     EllipticCurve ellipticCurve = new EllipticCurve(a, b, targetNumber);
     EllipticCurvePoint ellipticCurvePoint = new EllipticCurvePoint(x, y);
 
-    for (int primeNumber : primeNumberList) {
+    for (int factorialStep = 2; factorialStep < factorialBase; factorialStep++) {
       try {
-        ellipticCurvePoint = ellipticCurve.multiply(ellipticCurvePoint,
-                                                    getPointMultiplicity(primeNumber, base));
+        ellipticCurvePoint = ellipticCurve.multiply(ellipticCurvePoint, factorialStep);
       } catch (InverseException ex) {
         BigInteger gcd = ex.getTargetNumber().gcd(ex.getMod());
         return Pair.of(gcd, targetNumber.divide(gcd));
@@ -82,13 +95,5 @@ public class LenstraFactorization implements Factorization {
 
   private BigInteger getRandomNumberWithMod(int bitLength, BigInteger mod) {
     return new BigInteger(bitLength, SECURE_RANDOM).mod(mod);
-  }
-
-  private int getPointMultiplicity(int primeNumber, int base) {
-    int returnValue = primeNumber;
-    while (returnValue < base) {
-      returnValue *= primeNumber;
-    }
-    return returnValue / primeNumber;
   }
 }
