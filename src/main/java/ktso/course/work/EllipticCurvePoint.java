@@ -2,9 +2,6 @@ package ktso.course.work;
 
 import java.math.BigInteger;
 
-/**
- * Точка эллиптической кривой
- */
 public class EllipticCurvePoint {
 
   public static final EllipticCurvePoint ZERO = new EllipticCurvePoint(BigInteger.ZERO, BigInteger.ZERO);
@@ -12,11 +9,6 @@ public class EllipticCurvePoint {
   private final BigInteger x;
   private final BigInteger y;
 
-  /**
-   * Конструктор
-   * @param x - координата по оси x;
-   * @param y - координата по оси y.
-   */
   public EllipticCurvePoint(BigInteger x, BigInteger y) {
     this.x = x;
     this.y = y;
