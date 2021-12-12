@@ -72,7 +72,8 @@ public class LenstraFactorizationTest {
       try {
         stopWatch.reset();
         stopWatch.start();
-        Pair<BigInteger, BigInteger> factorizationResult = LENSTRA_FACTORIZATION.process(bigInteger, base, iterationCount);
+        Pair<BigInteger, BigInteger> factorizationResult = LENSTRA_FACTORIZATION.process(bigInteger,
+                                                                                         new LenstraFactorizationContext(base, iterationCount));
         stopWatch.stop();
 
         Assert.assertEquals(bigInteger, factorizationResult.getLeft().multiply(factorizationResult.getRight()));

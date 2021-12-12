@@ -12,26 +12,22 @@ import java.security.SecureRandom;
 import java.util.List;
 import java.util.Objects;
 
-public class LenstraFactorization implements Factorization {
+public class LenstraFactorization implements Factorization<LenstraFactorizationContext> {
 
   private static final SecureRandom SECURE_RANDOM = new SecureRandom();
-
-  private static final int DEFAULT_ITERATION_COUNT = 100_000;
 
   public LenstraFactorization() {
   }
 
   @Override
-  public Pair<BigInteger, BigInteger> process(BigInteger targetNumber, int base) {
-    return process(targetNumber, base, DEFAULT_ITERATION_COUNT);
-  }
-
-  @Override
-  public Pair<BigInteger, BigInteger> process(BigInteger targetNumber, int base, int iterationCount) {
-
+  public Pair<BigInteger, BigInteger> process(BigInteger targetNumber,
+                                              LenstraFactorizationContext lenstraFactorizationContext) {
     if (targetNumber.isProbablePrime(100)) {
       throw new PrimeNumberException();
     }
+
+    int base = lenstraFactorizationContext.getBase();
+    int iterationCount = lenstraFactorizationContext.getIterationCount();
 
     Pair<BigInteger, BigInteger> result;
     List<Integer> primeNumberList = PrimeUtils.getPrimeNumberList(base);
@@ -78,7 +74,6 @@ public class LenstraFactorization implements Factorization {
       try {
         for (int j = primeNumber; j < base; j *= primeNumber) {
           ellipticCurvePoint = ellipticCurve.multiply(ellipticCurvePoint, j);
-
         }
       } catch (InverseException ex) {
         BigInteger gcd = ex.getTargetNumber().gcd(ex.getMod());

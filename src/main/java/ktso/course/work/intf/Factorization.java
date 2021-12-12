@@ -4,9 +4,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.math.BigInteger;
 
-public interface Factorization {
+public interface Factorization<FactorizationContext> {
 
-  Pair<BigInteger, BigInteger> process(BigInteger targetNumber, int base);
-
-  Pair<BigInteger, BigInteger> process(BigInteger targetNumber, int base, int iterationCount);
+  Pair<BigInteger, BigInteger> process(BigInteger targetNumber, FactorizationContext factorizationContext);
 }
