@@ -12,6 +12,9 @@ import java.security.SecureRandom;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Класс, реализующий механизм факторизации Ленстры с помощью эллиптических кривых
+ */
 public class LenstraFactorization implements Factorization<LenstraFactorizationContext> {
 
   private static final SecureRandom SECURE_RANDOM = new SecureRandom();
@@ -19,6 +22,15 @@ public class LenstraFactorization implements Factorization<LenstraFactorizationC
   public LenstraFactorization() {
   }
 
+  /**
+   * Факторизация числа.
+   * @param targetNumber - число, которое будет разложено на множители.
+   * @param lenstraFactorizationContext - контекст, содержащий информацию, необходимую для факторизации
+   *                                    (лимит для поиска простых чисел и число итераций выполнения алгоритма)
+   * @throws ktso.course.work.exception.PrimeNumberException если targetNumber оказалось простым числом
+   * @throws ktso.course.work.exception.FactorizationException если не удалось разложить число на множители за отведенное число шагов.
+   * @return объект класс {@link Pair}, содержащий множители, перемножение которых даст исходное число
+   */
   @Override
   public Pair<BigInteger, BigInteger> process(BigInteger targetNumber,
                                               LenstraFactorizationContext lenstraFactorizationContext) {
@@ -42,6 +54,13 @@ public class LenstraFactorization implements Factorization<LenstraFactorizationC
     throw new FactorizationException();
   }
 
+  /**
+   * Основная часть алгоритма факториазции
+   * @param targetNumber - число, которое будет разложено на множители.
+   * @param base - лимит для поиска простых чисел
+   * @param primeNumberList - список простых чисел от нуля до base
+   * @return - множители targetNumber
+   */
   private Pair<BigInteger, BigInteger> startFactorization(BigInteger targetNumber,
                                                           int base,
                                                           List<Integer> primeNumberList) {
@@ -83,6 +102,12 @@ public class LenstraFactorization implements Factorization<LenstraFactorizationC
     return Pair.of(targetNumber, BigInteger.ONE);
   }
 
+  /**
+   * Генерация случайного большого числа по модулю
+   * @param bitLength - длина в битах сгенерированного числа
+   * @param mod - модуль, по которому нужно взять сгенерированное число
+   * @return сгенерированное случайное число
+   */
   private BigInteger getRandomNumberWithMod(int bitLength, BigInteger mod) {
     return new BigInteger(bitLength, SECURE_RANDOM).abs().mod(mod);
   }
