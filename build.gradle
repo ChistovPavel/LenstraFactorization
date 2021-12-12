@@ -12,6 +12,8 @@ apply from: "${projectDir}/versions.gradle"
 
 dependencies {
     implementation "org.apache.commons:commons-lang3:${libs.commonsLang}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${libs.jackson}"
+    implementation "commons-io:commons-io:${libs.commonsIO}"
 
     testImplementation "junit:junit:${libs.junit}"
 }

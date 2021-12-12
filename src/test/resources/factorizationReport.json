@@ -1,0 +1,207 @@
+[ {
+  "number" : 3,
+  "numBits" : 8,
+  "base" : 10,
+  "prime" : true
+}, {
+  "number" : 63,
+  "numBits" : 8,
+  "base" : 10,
+  "prime" : false,
+  "q" : 21,
+  "p" : 3
+}, {
+  "number" : 215,
+  "numBits" : 8,
+  "base" : 10,
+  "prime" : false,
+  "q" : 43,
+  "p" : 5
+}, {
+  "number" : 58,
+  "numBits" : 8,
+  "base" : 10,
+  "prime" : false,
+  "q" : 29,
+  "p" : 2
+}, {
+  "number" : 141,
+  "numBits" : 8,
+  "base" : 10,
+  "prime" : false,
+  "q" : 47,
+  "p" : 3
+}, {
+  "number" : 108,
+  "numBits" : 8,
+  "base" : 10,
+  "prime" : false,
+  "q" : 27,
+  "p" : 4
+}, {
+  "number" : 120,
+  "numBits" : 8,
+  "base" : 10,
+  "prime" : false,
+  "q" : 20,
+  "p" : 6
+}, {
+  "number" : 94,
+  "numBits" : 8,
+  "base" : 10,
+  "prime" : false,
+  "q" : 47,
+  "p" : 2
+}, {
+  "number" : 92,
+  "numBits" : 8,
+  "base" : 10,
+  "prime" : false,
+  "q" : 46,
+  "p" : 2
+}, {
+  "number" : 90,
+  "numBits" : 8,
+  "base" : 10,
+  "prime" : false,
+  "q" : 45,
+  "p" : 2
+}, {
+  "number" : 34005,
+  "numBits" : 16,
+  "base" : 20,
+  "prime" : false,
+  "q" : 6801,
+  "p" : 5
+}, {
+  "number" : 32373,
+  "numBits" : 16,
+  "base" : 20,
+  "prime" : false,
+  "q" : 2943,
+  "p" : 11
+}, {
+  "number" : 11584,
+  "numBits" : 16,
+  "base" : 20,
+  "prime" : false,
+  "q" : 5792,
+  "p" : 2
+}, {
+  "number" : 64451,
+  "numBits" : 16,
+  "base" : 20,
+  "prime" : true
+}, {
+  "number" : 1718,
+  "numBits" : 16,
+  "base" : 20,
+  "prime" : false,
+  "q" : 859,
+  "p" : 2
+}, {
+  "number" : 43144,
+  "numBits" : 16,
+  "base" : 20,
+  "prime" : false,
+  "q" : 10786,
+  "p" : 4
+}, {
+  "number" : 35260,
+  "numBits" : 16,
+  "base" : 20,
+  "prime" : false,
+  "q" : 8815,
+  "p" : 4
+}, {
+  "number" : 59732,
+  "numBits" : 16,
+  "base" : 20,
+  "prime" : false,
+  "q" : 14933,
+  "p" : 4
+}, {
+  "number" : 13192,
+  "numBits" : 16,
+  "base" : 20,
+  "prime" : false,
+  "q" : 6596,
+  "p" : 2
+}, {
+  "number" : 4188,
+  "numBits" : 16,
+  "base" : 20,
+  "prime" : false,
+  "q" : 349,
+  "p" : 12
+}, {
+  "number" : 5203658,
+  "numBits" : 24,
+  "base" : 30,
+  "prime" : false,
+  "q" : 2601829,
+  "p" : 2
+}, {
+  "number" : 9628265,
+  "numBits" : 24,
+  "base" : 30,
+  "prime" : false,
+  "q" : 1925653,
+  "p" : 5
+}, {
+  "number" : 7982426,
+  "numBits" : 24,
+  "base" : 30,
+  "prime" : false,
+  "q" : 3991213,
+  "p" : 2
+}, {
+  "number" : 281511,
+  "numBits" : 24,
+  "base" : 30,
+  "prime" : false,
+  "q" : 93837,
+  "p" : 3
+}, {
+  "number" : 5318914,
+  "numBits" : 24,
+  "base" : 30,
+  "prime" : false,
+  "q" : 2659457,
+  "p" : 2
+}, {
+  "number" : 10858996,
+  "numBits" : 24,
+  "base" : 30,
+  "prime" : false,
+  "q" : 2714749,
+  "p" : 4
+}, {
+  "number" : 13528590,
+  "numBits" : 24,
+  "base" : 30,
+  "prime" : false,
+  "q" : 6764295,
+  "p" : 2
+}, {
+  "number" : 4743776,
+  "numBits" : 24,
+  "base" : 30,
+  "prime" : false,
+  "q" : 148243,
+  "p" : 32
+}, {
+  "number" : 4575366,
+  "numBits" : 24,
+  "base" : 30,
+  "prime" : false,
+  "q" : 28243,
+  "p" : 162
+}, {
+  "number" : 3722754,
+  "numBits" : 24,
+  "base" : 30,
+  "prime" : false,
+  "q" : 1861377,
+  "p" : 2
+} ]

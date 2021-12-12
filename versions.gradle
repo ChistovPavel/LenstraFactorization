@@ -1,5 +1,7 @@
 ext {
     libs = [:]
     libs.commonsLang = '3.12.0'
+    libs.jackson = '2.13.0'
+    libs.commonsIO = '2.6'
     libs.junit = '4.12'
 }

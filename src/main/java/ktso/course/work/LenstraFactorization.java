@@ -2,6 +2,7 @@ package ktso.course.work;
 
 import ktso.course.work.exception.FactorizationException;
 import ktso.course.work.exception.InverseException;
+import ktso.course.work.exception.PrimeNumberException;
 import ktso.course.work.intf.Factorization;
 import ktso.course.work.utils.PrimeUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -27,6 +28,11 @@ public class LenstraFactorization implements Factorization {
 
   @Override
   public Pair<BigInteger, BigInteger> process(BigInteger targetNumber, int base, int iterationCount) {
+
+    if (targetNumber.isProbablePrime(100)) {
+      throw new PrimeNumberException();
+    }
+
     Pair<BigInteger, BigInteger> result;
     List<Integer> primeNumberList = PrimeUtils.getPrimeNumberList(base);
 
@@ -70,8 +76,10 @@ public class LenstraFactorization implements Factorization {
 
     for (int primeNumber : primeNumberList) {
       try {
-        ellipticCurvePoint = ellipticCurve.multiply(ellipticCurvePoint,
-                                                    getPointMultiplicity(primeNumber, base));
+        for (int j = primeNumber; j < base; j *= primeNumber) {
+          ellipticCurvePoint = ellipticCurve.multiply(ellipticCurvePoint, j);
+
+        }
       } catch (InverseException ex) {
         BigInteger gcd = ex.getTargetNumber().gcd(ex.getMod());
         return Pair.of(gcd, targetNumber.divide(gcd));
@@ -81,14 +89,6 @@ public class LenstraFactorization implements Factorization {
   }
 
   private BigInteger getRandomNumberWithMod(int bitLength, BigInteger mod) {
-    return new BigInteger(bitLength, SECURE_RANDOM).mod(mod);
-  }
-
-  private int getPointMultiplicity(int primeNumber, int base) {
-    int returnValue = primeNumber;
-    while (returnValue < base) {
-      returnValue *= primeNumber;
-    }
-    return returnValue / primeNumber;
+    return new BigInteger(bitLength, SECURE_RANDOM).abs().mod(mod);
   }
 }
