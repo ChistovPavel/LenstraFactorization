@@ -10,11 +10,11 @@ public class FactorizationInfo {
 
   private int base;
 
-  private boolean prime;
-
   private BigInteger q;
 
   private BigInteger p;
+
+  private long executionTime;
 
   public BigInteger getNumber() {
     return number;
@@ -40,14 +40,6 @@ public class FactorizationInfo {
     this.base = base;
   }
 
-  public boolean isPrime() {
-    return prime;
-  }
-
-  public void setPrime(boolean prime) {
-    this.prime = prime;
-  }
-
   public BigInteger getQ() {
     return q;
   }
@@ -62,5 +54,13 @@ public class FactorizationInfo {
 
   public void setP(BigInteger p) {
     this.p = p;
+  }
+
+  public long getExecutionTime() {
+    return executionTime;
+  }
+
+  public void setExecutionTime(long executionTime) {
+    this.executionTime = executionTime;
   }
 }
